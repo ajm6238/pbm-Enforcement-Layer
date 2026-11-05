@@ -9,7 +9,8 @@
 
 AI Agent가 상품 탐색부터 결제까지 수행하는 Agentic Commerce 환경에서는, Agent의 판단 오류나 Prompt Injection 같은 외부 공격으로 사용자의 의도와 다른 결제가 발생할 수 있습니다.
 
-이 저장소는 AI Agent와 실제 자금 사이에 **Purpose-Bound Money(PBM) 기반의 자금 집행 계층(Funds Enforcement Layer)** 을 두는 모델을 구현합니다. Agent가 어떤 결제 요청을 생성하든, 요청은 PBM 스마트 컨트랙트를 통과해야 하며 사전에 정의된 조건을 만족하지 못하면 컨트랙트 단계에서 거래가 되돌려집니다. 즉 Agent의 판단 결과가 실제 자금 이동을 결정하지 않습니다.
+이 저장소는 AI Agent와 실제 자금 사이에 **Purpose-Bound Money(PBM) 기반의 자금 집행 계층(Funds Enforcement Layer)** 을 두는 모델을 구현합니다.
+Agent가 어떤 결제 요청을 생성하든, 요청은 PBM 스마트 컨트랙트를 통과해야 하며 사전에 정의된 조건을 만족하지 못하면 컨트랙트 단계에서 거래가 거절됩니다. 
 
 ```
 AI Agent ──결제 요청──▶ PBM 자금 집행 계층 (스마트 컨트랙트) ──조건 충족 시에만──▶ 자금 이동
