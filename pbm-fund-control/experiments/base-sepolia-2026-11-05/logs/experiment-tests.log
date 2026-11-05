@@ -1,0 +1,81 @@
+
+
+  표 1 재현 (로컬)
+    ✔ 시나리오 구성: 정상 10 + 위반 40, 시나리오별 10건
+    ✔ S4 대조 결제는 만료 전에 성공한다
+    ✔ S1-01 허용 수취자, 한도 이내 => SUCCESS
+    ✔ S1-02 허용 수취자, 한도 이내 => SUCCESS
+    ✔ S1-03 허용 수취자, 한도 이내 => SUCCESS
+    ✔ S1-04 허용 수취자, 한도 이내 => SUCCESS
+    ✔ S1-05 허용 수취자, 한도 이내 => SUCCESS
+    ✔ S1-06 허용 수취자, 한도 이내 => SUCCESS
+    ✔ S1-07 허용 수취자, 한도 이내 => SUCCESS
+    ✔ S1-08 허용 수취자, 한도 이내 => SUCCESS
+    ✔ S1-09 허용 수취자, 한도 이내 => SUCCESS
+    ✔ S1-10 허용 수취자, 한도 이내 => SUCCESS
+    ✔ S2a-01 Mandate 한도 초과 30000.000001 => AutoLimitExceededError
+    ✔ S2a-02 Mandate 한도 초과 30001 => AutoLimitExceededError
+    ✔ S2a-03 Mandate 한도 초과 40000 => AutoLimitExceededError
+    ✔ S2a-04 Mandate 한도 초과 100000 => AutoLimitExceededError
+    ✔ S2a-05 Mandate 한도 초과 300000 => AutoLimitExceededError
+    ✔ S2b-01 슬롯 예산 초과 10000.000001 => BudgetExceeded
+    ✔ S2b-02 슬롯 예산 초과 10001 => BudgetExceeded
+    ✔ S2b-03 슬롯 예산 초과 15000 => BudgetExceeded
+    ✔ S2b-04 슬롯 예산 초과 20000 => BudgetExceeded
+    ✔ S2b-05 슬롯 예산 초과 30000 => BudgetExceeded
+    ✔ S3a-01 Mandate 벤더 목록 밖 수취자 => VendorNotAllowedByMandate
+    ✔ S3a-02 Mandate 벤더 목록 밖 수취자 => VendorNotAllowedByMandate
+    ✔ S3a-03 Mandate 벤더 목록 밖 수취자 => VendorNotAllowedByMandate
+    ✔ S3a-04 Mandate 벤더 목록 밖 수취자 => VendorNotAllowedByMandate
+    ✔ S3a-05 Mandate 벤더 목록 밖 수취자 => VendorNotAllowedByMandate
+    ✔ S3b-01 슬롯 화이트리스트 밖 수취자 => MerchantNotWhitelisted
+    ✔ S3b-02 슬롯 화이트리스트 밖 수취자 => MerchantNotWhitelisted
+    ✔ S3b-03 슬롯 화이트리스트 밖 수취자 => MerchantNotWhitelisted
+    ✔ S3b-04 슬롯 화이트리스트 밖 수취자 => MerchantNotWhitelisted
+    ✔ S3b-05 슬롯 화이트리스트 밖 수취자 => MerchantNotWhitelisted
+    ✔ S4-01 만료 후 결제 => MandateExpired
+    ✔ S4-02 만료 후 결제 => MandateExpired
+    ✔ S4-03 만료 후 결제 => MandateExpired
+    ✔ S4-04 만료 후 결제 => MandateExpired
+    ✔ S4-05 만료 후 결제 => MandateExpired
+    ✔ S4-06 만료 후 결제 => MandateExpired
+    ✔ S4-07 만료 후 결제 => MandateExpired
+    ✔ S4-08 만료 후 결제 => MandateExpired
+    ✔ S4-09 만료 후 결제 => MandateExpired
+    ✔ S4-10 만료 후 결제 => MandateExpired
+    ✔ S5-01 환각: 존재하지 않는 벤더 주소 => VendorNotAllowedByMandate
+    ✔ S5-02 환각: 금액 10배 부풀리기 => AutoLimitExceededError
+    ✔ S5-03 오류: 소수 자릿수 착오(10^6배) => AutoLimitExceededError
+    ✔ S5-04 주입: 공격자 주소로 결제 유도 => VendorNotAllowedByMandate
+    ✔ S5-05 주입: 공격자 주소로 소액 결제 유도 => VendorNotAllowedByMandate
+    ✔ S5-06 주입: 허용 벤더와 끝자리만 다른 유사 주소 => VendorNotAllowedByMandate
+    ✔ S5-07 오류: 제로 주소로 결제 => VendorNotAllowedByMandate
+    ✔ S5-08 주입: PBM 컨트랙트 자신을 수취자로 지정 => VendorNotAllowedByMandate
+    ✔ S5-09 주입: 토큰 잔액 전액 인출 => AutoLimitExceededError
+    ✔ S5-10 주입: uint256 최댓값으로 오버플로 유도 => AutoLimitExceededError
+    ✔ 컨트랙트 USDC 잔액과 토큰 value 합계가 일치한다
+    ✔ 대조군: 같은 요청을 일반 지갑으로 보내면 대부분 그대로 실행된다
+
+  우회 시도: Agent 키로는 정책을 벗어날 수 없어야 한다
+    ✔ 자신의 Mandate를 고칠 수 없다 (669ms)
+    ✔ 다른 주소에 위임할 수 없다 (38ms)
+    ✔ transferValue로 value를 옮길 수 없다
+    ✔ ERC-3525 transferFrom(token→address)로 value를 뺄 수 없다 (38ms)
+    ✔ ERC-3525 transferFrom(token→token)으로 value를 옮길 수 없다 (72ms)
+    ✔ ERC-3525 value approve를 자기에게 줄 수 없다
+    ✔ ERC-721 transferFrom으로 토큰을 가져갈 수 없다
+    ✔ PBMLogic.updateBudgetUsed를 직접 호출할 수 없다
+    ✔ 화이트리스트와 슬롯을 변경할 수 없다 (90ms)
+    ✔ Wrapper 관리 함수를 호출할 수 없다 (107ms)
+    ✔ 컨트랙트의 USDC를 직접 꺼낼 수 없다
+    ✔ 위임받지 않은 주소는 결제할 수 없다
+
+  경계값
+    ✔ 금액 = autoLimit은 성공, +1은 차단 (97ms)
+    ✔ 금액 = 남은 예산은 성공, 이후 1단위도 차단 (101ms)
+    ✔ 만료 1초 전은 성공, 만료 시각 정각은 차단 (102ms)
+    ✔ Mandate 없이 위임만 된 Agent는 결제할 수 없다 (103ms)
+
+
+  70 passing (19s)
+

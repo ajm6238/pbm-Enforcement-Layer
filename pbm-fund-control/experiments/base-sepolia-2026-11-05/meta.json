@@ -1,0 +1,36 @@
+{
+  "network": "baseSepolia",
+  "chainId": 84532,
+  "startedAt": "2026-11-05T02:49:12.989Z",
+  "finishedAt": "2026-11-05T02:57:08.663Z",
+  "ttlC": 300,
+  "commit": "b3c5267",
+  "contracts": {
+    "usdc": "0xC879a93dDE6ba3A83eBca3829b32388892166b39",
+    "vault": "0x3D98Bd524B6d21bdf49598F75ed92549193818E7",
+    "logic": "0x62BdB764cee48d3550e791603cb009086aE63275",
+    "wrapper": "0x0284e13114122588D128aA167804c401bc7f5D31"
+  },
+  "actors": {
+    "issuer": "0x462946D7e09F876a05F3281c772c192d59d8a43A",
+    "holder": "0x4B72A6DC58d7AA02Cf693a198Ba7697E956bFEEd",
+    "agent": "0x0c9bF0AAEa4af29C85E2b3098e622895EaAb8AaB"
+  },
+  "merchantM1": "0xd9b03676012A9a8FBcC89811262192Dfb2DF5B86",
+  "tokens": {
+    "A": "1",
+    "B": "2",
+    "C": "3"
+  },
+  "slots": {
+    "A": 1,
+    "B": 2,
+    "C": 3
+  },
+  "expiresAtC": 1793847286,
+  "invariant": {
+    "ok": true,
+    "contractUsdc": "410000000000",
+    "tokenSum": "410000000000"
+  }
+}

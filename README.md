@@ -17,6 +17,30 @@ AI Agent ──결제 요청──▶ PBM 자금 집행 계층 (스마트 컨트
                               └── 조건 위반 시 revert (자금 이동 없음)
 ```
 
+## 실험 결과
+
+**Base Sepolia에서 정상 결제 10건은 모두 성공하고, 조건 위반 결제 40건은 모두 차단되었습니다.**
+
+| 시나리오 | 시도 | 결과 | 평균 gas |
+|---|---:|---|---:|
+| 정상 결제 | 10 | 성공 10 | 94,818 |
+| 금액 초과 | 10 | 차단 10 | 49,896 |
+| 수취자 위반 | 10 | 차단 10 | 47,846 |
+| 유효 기간 위반 | 10 | 차단 10 | 43,756 |
+| Agent 오동작, 외부 공격 | 10 | 차단 10 | 43,966 |
+
+차단된 40건은 모두 스마트 컨트랙트에서 거부되어 자금이 이동하지 않았습니다. 같은 요청을 PBM 없이 일반 전송으로 보내면 **40건 중 37건의 자금이 그대로 이동**했습니다.
+
+**체인에서 직접 확인하기**
+
+- [정상 결제](https://sepolia.basescan.org/tx/0xd9e301ff9dd25423a0bba49e014690ed232f434868ec384d2826ec9d14833371)
+- [금액 초과 차단](https://sepolia.basescan.org/tx/0x3f424ee847190b8de3792d861927f3843fd86fd64d0cae71eaa74ea7b355dbcf)
+- [수취자 위반 차단](https://sepolia.basescan.org/tx/0x9f2b7b36f81e07438cc9d4af4a0b2e99c3f9925ae13eeb91bf1b7df10546e6d1)
+- [유효 기간 위반 차단](https://sepolia.basescan.org/tx/0xdde0bd585f0bba18b1a4c2d00e289d6d0cf2b476903661d8f051acfce78cca57)
+- [Agent 오동작 차단](https://sepolia.basescan.org/tx/0x014705c37e09ea386f42b7896f1fb0ecc75d69f73ad685dd02c14854df9c768f)
+
+[전체 실험 결과와 데이터 보기](pbm-fund-control/experiments/base-sepolia-2026-11-05)
+
 ## 자금 집행 계층의 검증 구조
 
 결제는 `PBMWrapper.pay(tokenId, payee, amount, purpose)` 한 함수로 실행되며, 두 단계로 검증합니다.
@@ -36,50 +60,48 @@ AI Agent ──결제 요청──▶ PBM 자금 집행 계층 (스마트 컨트
 
 ## 배포 정보 (Base Sepolia, chainId 84532)
 
+실험에 사용한 컨트랙트입니다.
+
 | 컨트랙트 | 주소 |
 |---|---|
-| PBMWrapper | [`0x2B313076BB5E0CcA650E387442ac024b17d30927`](https://sepolia.basescan.org/address/0x2B313076BB5E0CcA650E387442ac024b17d30927) |
-| PBMLogic | [`0xc2758aF169520424a282B1cf821251EBAAd627DE`](https://sepolia.basescan.org/address/0xc2758aF169520424a282B1cf821251EBAAd627DE) |
-| PBMVault | [`0xccc3665dF3A7D32143117777eE9C28533018C472`](https://sepolia.basescan.org/address/0xccc3665dF3A7D32143117777eE9C28533018C472) |
-| MockUSDC | [`0x64ae3f814b60cA79f8fc8a52dBef767fD4d65106`](https://sepolia.basescan.org/address/0x64ae3f814b60cA79f8fc8a52dBef767fD4d65106) |
+| PBMWrapper | [`0x0284e13114122588D128aA167804c401bc7f5D31`](https://sepolia.basescan.org/address/0x0284e13114122588D128aA167804c401bc7f5D31) |
+| PBMLogic | [`0x62BdB764cee48d3550e791603cb009086aE63275`](https://sepolia.basescan.org/address/0x62BdB764cee48d3550e791603cb009086aE63275) |
+| PBMVault | [`0x3D98Bd524B6d21bdf49598F75ed92549193818E7`](https://sepolia.basescan.org/address/0x3D98Bd524B6d21bdf49598F75ed92549193818E7) |
+| MockUSDC | [`0xC879a93dDE6ba3A83eBca3829b32388892166b39`](https://sepolia.basescan.org/address/0xC879a93dDE6ba3A83eBca3829b32388892166b39) |
 
 ## 저장소 구조
 
 ```
-contracts/
-  PBMWrapper.sol        자금 집행 계층 진입점 (ERC-3525 토큰, pay(), Mandate 검증)
-  PBMLogic.sol          PBM 정책 (화이트리스트, 예산)
-  PBMVault.sol          예치 자금 보관
-  utils/MockUSDC.sol    테스트용 USDC (decimals 6)
-  lib/ERC3525/          ERC-3525 (Semi-Fungible Token) 구현
-test/                   컨트랙트 단위 테스트
-deploy/                 배포 및 실험 스크립트 (testPay.ts 등)
-scripts/                결제 조건·트랜잭션 조회 유틸리티
-experiments/            실험 결과 데이터
+pbm-fund-control/
+  contracts/
+    PBMWrapper.sol        자금 집행 계층 진입점 (ERC-3525 토큰, pay(), Mandate 검증)
+    PBMLogic.sol          PBM 정책 (화이트리스트, 예산)
+    PBMVault.sol          예치 자금 보관
+    utils/MockUSDC.sol    테스트용 USDC (decimals 6)
+    lib/ERC3525/          ERC-3525 (Semi-Fungible Token) 구현
+  experiment/             실험 시나리오와 판정 로직
+  scripts/experiment/     실험 실행, 체인 대조 스크립트
+  test/experiment/        실험 테스트
+  experiments/            실험 결과 데이터
+  test/                   컨트랙트 단위 테스트
+  deploy/                 배포 스크립트
+  scripts/                결제 조건·트랜잭션 조회 유틸리티
 ```
 
 ## 실행 방법
 
-요구사항: Node.js 18 이상, Yarn
+요구사항: Node.js 20, Yarn 1
 
 ```bash
+cd pbm-fund-control
 yarn install
-yarn compile
-yarn test          # 로컬 Hardhat 네트워크에서 단위 테스트 실행
-```
-
-Base Sepolia에서 실험 시나리오를 재현하려면 `.env.example`을 `.env`로 복사하고 값을 채운 뒤 실행합니다.
-
-```bash
 cp .env.example .env
-# BASE_SEPOLIA_RPC_URL, PRIVATE_KEY, AGENT_PRIVATE_KEY 등을 입력
-
-npx hardhat run deploy/deployMock.ts --network baseSepolia       # 컨트랙트 배포 및 정책 설정
-npx hardhat run deploy/deployUserFlow.ts --network baseSepolia   # 토큰 발행, Agent 위임, Mandate 등록
-npx hardhat run deploy/testPay.ts --network baseSepolia          # 정상·조건 위반 결제 실행
+npx hardhat test test/experiment/pbm-enforcement.spec.ts test/experiment/pbm-bypass.spec.ts
 ```
 
-테스트넷 거래에는 Base Sepolia ETH가 필요합니다. `.env`에는 개인키가 들어가므로 저장소에 커밋하지 마세요.
+저장된 데이터를 체인과 대조하거나 Base Sepolia에서 실험을 다시 실행하는 방법은 [실험 결과 문서](pbm-fund-control/experiments/base-sepolia-2026-11-05#재현-방법)에 있습니다.
+
+`.env`에는 개인키가 들어가므로 저장소에 커밋하지 마세요.
 
 
 ## 라이선스

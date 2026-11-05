@@ -1,0 +1,57 @@
+issuer 0x462946D7e09F876a05F3281c772c192d59d8a43A 잔액 0.000282476640557098 ETH
+[2026-11-05T02:49:12.989Z] 배포 및 토큰 구성
+[2026-11-05T02:49:55.885Z] S4-CTRL PASS status=1 SUCCESS
+[2026-11-05T02:49:59.311Z] S1-01 PASS status=1 SUCCESS
+[2026-11-05T02:50:02.636Z] S1-02 PASS status=1 SUCCESS
+[2026-11-05T02:50:05.897Z] S1-03 PASS status=1 SUCCESS
+[2026-11-05T02:50:09.423Z] S1-04 PASS status=1 SUCCESS
+[2026-11-05T02:50:12.710Z] S1-05 PASS status=1 SUCCESS
+[2026-11-05T02:50:15.946Z] S1-06 PASS status=1 SUCCESS
+[2026-11-05T02:50:19.377Z] S1-07 PASS status=1 SUCCESS
+[2026-11-05T02:50:22.616Z] S1-08 PASS status=1 SUCCESS
+[2026-11-05T02:50:26.201Z] S1-09 PASS status=1 SUCCESS
+[2026-11-05T02:50:29.606Z] S1-10 PASS status=1 SUCCESS
+[2026-11-05T02:50:33.025Z] S2a-01 PASS status=0 AutoLimitExceededError
+[2026-11-05T02:50:36.469Z] S2a-02 PASS status=0 AutoLimitExceededError
+[2026-11-05T02:50:39.896Z] S2a-03 PASS status=0 AutoLimitExceededError
+[2026-11-05T02:50:43.662Z] S2a-04 PASS status=0 AutoLimitExceededError
+[2026-11-05T02:50:46.898Z] S2a-05 PASS status=0 AutoLimitExceededError
+[2026-11-05T02:50:50.159Z] S2b-01 PASS status=0 BudgetExceeded
+[2026-11-05T02:50:53.756Z] S2b-02 PASS status=0 BudgetExceeded
+[2026-11-05T02:50:56.964Z] S2b-03 PASS status=0 BudgetExceeded
+[2026-11-05T02:51:00.151Z] S2b-04 PASS status=0 BudgetExceeded
+[2026-11-05T02:51:03.846Z] S2b-05 PASS status=0 BudgetExceeded
+[2026-11-05T02:51:07.280Z] S3a-01 PASS status=0 VendorNotAllowedByMandate
+[2026-11-05T02:51:10.811Z] S3a-02 PASS status=0 VendorNotAllowedByMandate
+[2026-11-05T02:51:13.999Z] S3a-03 PASS status=0 VendorNotAllowedByMandate
+[2026-11-05T02:51:17.179Z] S3a-04 PASS status=0 VendorNotAllowedByMandate
+[2026-11-05T02:51:20.606Z] S3a-05 PASS status=0 VendorNotAllowedByMandate
+[2026-11-05T02:51:23.899Z] S3b-01 PASS status=0 MerchantNotWhitelisted
+[2026-11-05T02:51:27.375Z] S3b-02 PASS status=0 MerchantNotWhitelisted
+[2026-11-05T02:51:30.614Z] S3b-03 PASS status=0 MerchantNotWhitelisted
+[2026-11-05T02:51:33.871Z] S3b-04 PASS status=0 MerchantNotWhitelisted
+[2026-11-05T02:51:37.520Z] S3b-05 PASS status=0 MerchantNotWhitelisted
+[2026-11-05T02:51:40.733Z] S5-01 PASS status=0 VendorNotAllowedByMandate
+[2026-11-05T02:51:44.035Z] S5-02 PASS status=0 AutoLimitExceededError
+[2026-11-05T02:51:47.462Z] S5-03 PASS status=0 AutoLimitExceededError
+[2026-11-05T02:51:50.760Z] S5-04 PASS status=0 VendorNotAllowedByMandate
+[2026-11-05T02:51:54.210Z] S5-05 PASS status=0 VendorNotAllowedByMandate
+[2026-11-05T02:51:57.393Z] S5-06 PASS status=0 VendorNotAllowedByMandate
+[2026-11-05T02:52:00.794Z] S5-07 PASS status=0 VendorNotAllowedByMandate
+[2026-11-05T02:52:04.513Z] S5-08 PASS status=0 VendorNotAllowedByMandate
+[2026-11-05T02:52:07.840Z] S5-09 PASS status=0 AutoLimitExceededError
+[2026-11-05T02:52:11.037Z] S5-10 PASS status=0 AutoLimitExceededError
+[2026-11-05T02:52:11.037Z] 토큰 C 만료 대기 (expiresAt=1793847286)
+[2026-11-05T02:54:54.714Z] S4-01 PASS status=0 MandateExpired
+[2026-11-05T02:54:58.074Z] S4-02 PASS status=0 MandateExpired
+[2026-11-05T02:55:01.457Z] S4-03 PASS status=0 MandateExpired
+[2026-11-05T02:55:04.690Z] S4-04 PASS status=0 MandateExpired
+[2026-11-05T02:55:07.849Z] S4-05 PASS status=0 MandateExpired
+[2026-11-05T02:55:11.451Z] S4-06 PASS status=0 MandateExpired
+[2026-11-05T02:55:14.739Z] S4-07 PASS status=0 MandateExpired
+[2026-11-05T02:55:17.953Z] S4-08 PASS status=0 MandateExpired
+[2026-11-05T02:55:21.400Z] S4-09 PASS status=0 MandateExpired
+[2026-11-05T02:55:24.599Z] S4-10 PASS status=0 MandateExpired
+[2026-11-05T02:55:26.310Z] 대조군 실행
+결과: results\baseSepolia-2026-11-05T02-49-12-989Z
+기대와 다른 시도 0건
